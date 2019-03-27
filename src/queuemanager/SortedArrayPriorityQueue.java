@@ -22,7 +22,7 @@ public class SortedArrayPriorityQueue<T> implements PriorityQueue<T> {
      * Where the data is actually stored.
      */
     private final Object[] storage;
-//
+
     /**
      * The size of the storage array.
      */
