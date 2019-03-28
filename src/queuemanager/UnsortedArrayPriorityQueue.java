@@ -51,13 +51,19 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
      @Override
     public void remove() throws QueueUnderflowException {
         Scanner Scanner = new Scanner(System.in);
-        int i, max = 0;
-        
+        int a, max = 0;
+        int PriorityItem;
          if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-            for ( i = 0; i < tailIndex; i++) {
-              if(tailIndex > max)
+            
+            for ( a = 0; a < tailIndex; a++) {
+             
+                
+                PriorityItem = ((PriorityItem<T>) storage[a]).getPriority();
+              
+            
+            if(tailIndex > max)
               {
                   max = tailIndex;
               }
@@ -94,4 +100,8 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         result = result + "]";
         return result;
     }
+    
+    
+    
+    
 }
