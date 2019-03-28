@@ -63,12 +63,12 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                 PriorityItem = ((PriorityItem<T>) storage[a]).getPriority();
               
             
-            if(tailIndex > max)
+            if(PriorityItem > max)
               {
-                  max = tailIndex;
+                  max = PriorityItem;
               }
             }
-            tailIndex = tailIndex - 1;
+            PriorityItem = tailIndex - 1;
         }
 
     }
