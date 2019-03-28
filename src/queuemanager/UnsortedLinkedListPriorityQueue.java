@@ -1,5 +1,6 @@
-package queuemanager;
 
+package queuemanager;
+/*
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -97,5 +98,5 @@ public abstract class UnsortedLinkedListPriorityQueue<T> implements PriorityQueu
    
 }
     
-    
+    */
 
