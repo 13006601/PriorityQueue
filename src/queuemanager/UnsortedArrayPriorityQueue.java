@@ -1,6 +1,6 @@
 package queuemanager;
 
-import java.util.Scanner;
+
 
 
 public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
@@ -28,6 +28,8 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
      *
      * @param size
      */
+    
+    
     public UnsortedArrayPriorityQueue(int size) {
         storage = new Object[size];
         capacity = size;
@@ -50,25 +52,33 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
      @Override
     public void remove() throws QueueUnderflowException {
-        Scanner Scanner = new Scanner(System.in);
-        int a, max = 0;
         int PriorityItem;
+        
+        
+        int i, max = + 1;
          if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
             
-            for ( a = 0; a < tailIndex; a++) {
              
+             
+             
+            for ( i = 0; i < tailIndex + 1; i++) {
+             
+                PriorityItem = ((PriorityItem<T>) storage[i]).getPriority();
                 
-                PriorityItem = ((PriorityItem<T>) storage[a]).getPriority();
-              
-            
+               
+               
+                
             if(PriorityItem > max)
               {
                   max = PriorityItem;
+                  
+                  System.out.println("The max number is" + PriorityItem);
               }
             }
-            PriorityItem = tailIndex - 1;
+            
+            tailIndex = tailIndex - 1;
         }
 
     }
