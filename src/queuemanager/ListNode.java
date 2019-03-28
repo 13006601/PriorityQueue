@@ -3,8 +3,9 @@
 
 public class ListNode<T> {
     private final T item;
-    private final int priority;
-    final ListNode<T> next;
+    public final int priority;
+    public ListNode<T> next;
+   
     
     public ListNode (T item, int priority, ListNode<T> next)
     {
@@ -20,7 +21,7 @@ public class ListNode<T> {
         return item;
     }
     
-    public int getpriotiy()
+    public int getPriotiy()
     {
         return priority;
     }

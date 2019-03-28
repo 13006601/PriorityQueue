@@ -28,8 +28,6 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
      *
      * @param size
      */
-    
-    
     public UnsortedArrayPriorityQueue(int size) {
         storage = new Object[size];
         capacity = size;
@@ -50,38 +48,36 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         return tailIndex < 0;
     }
     
+     
+    
+    
      @Override
     public void remove() throws QueueUnderflowException {
         int PriorityItem;
         
-        
-        int i, max = + 1;
+        int i, max = 0;
          if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
             
-             
-             
-             
-            for ( i = 0; i < tailIndex + 1; i++) {
+            for ( i = 0; i < tailIndex; i++) {
              
                 PriorityItem = ((PriorityItem<T>) storage[i]).getPriority();
                 
-               
-               
                 
             if(PriorityItem > max)
               {
                   max = PriorityItem;
-                  
-                  System.out.println("The max number is" + PriorityItem);
               }
-            }
             
+                
+            }
             tailIndex = tailIndex - 1;
         }
 
     }
+       
+    
 
     @Override
     public void add(T item, int priority) throws QueueOverflowException {
