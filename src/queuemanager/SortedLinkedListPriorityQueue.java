@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
      
+    
    private  ListNode<T> front;
    
    
@@ -34,19 +35,38 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
        return front.getItem();
     }
     
-    
+    /*
+     this is the function what add the item in the sorted inked list, aslo this function 
+    is sorting nods and palce the in list in the order of from highest priority number
+    to loves.
+    */
     @Override
     public void add(T item, int priority)
     {
+        /*
+         this if statement is checking if the queue is empty if it empty the function inserted 
+        a new node, but if it not empty function go futher in order to find an empty spot
+        for the new node.
+        */
        if(isEmpty()){
            
            front = new ListNode<>(item,priority,front);
            
         }else{
-            ListNode<T> currentNode = front;
-         //  frontTop = front;
            
+           /*
+            the second nod value.
+           */
+            ListNode<T> currentNode = front;
+         
+           /*
+             a hile method what checking if the 
+            currentNod is not null.
+            */
            while(currentNode != null){
+               /*
+               an if statment what check if the 
+               */
                if(currentNode.priority < priority){
                    front = new ListNode<>(item,priority,front.next);
                    break;
@@ -72,6 +92,10 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
         } // end else;
 } // end of function; 
 
+    /*
+    this function is removing the first item in the list, because this is a sorted list 
+    the first item on the list is alway a item with the highest priority.
+    */
     @Override
     public void remove() throws QueueUnderflowException 
     {
@@ -81,6 +105,11 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
         }
         front = front.getNext();
     }
+    
+     /*
+     this function is an output what represnt to user the return result of 
+    a list with the items and they priority number what was inserted by user.
+    */
     
     @Override
     public String toString()
@@ -107,7 +136,10 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
         return result;
     }
 
-    
+    /*
+     represent the capocity of the sorted linked list
+    where is the size sored.
+    */
     private int size()
     {
         ListNode<T> node = front;

@@ -10,9 +10,6 @@ public class ListNode<T> {
     public final int priority;
     public ListNode<T> next;
    
-    /*
-     creating an empty node with given parametrs.
-    */
     
     public ListNode (T item, int priority, ListNode<T> next)
     {
