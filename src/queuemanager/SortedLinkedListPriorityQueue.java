@@ -7,11 +7,14 @@ import java.util.logging.Logger;
 public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
      
    private  ListNode<T> front;
+   private  ListNode<T> frontTop;
+   
     
     public SortedLinkedListPriorityQueue(int size)
     {
         front = null;
-         front = null;
+        frontTop = null;
+        
     }
     
     @Override
@@ -33,14 +36,32 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
     
     
     @Override
-    public void add(T item, int priority)throws QueueOverflowException
+    public void add(T item, int priority)
     {
-       
-           front = new ListNode<>(item, priority, front);
-        
-    }
-
-   
+       if(isEmpty()){
+           
+           front = new ListNode<>(item,priority,front);
+           
+        }else{
+           
+           frontTop = front;
+           
+           while(frontTop != null){
+               if(frontTop.getPriotiy() > priority){
+                   frontTop = new ListNode<>(item,priority,front);
+                   break;
+                    } // end if;
+                  if(frontTop.next == null){
+                      frontTop.next = new ListNode<>(item,priority,front);
+                      
+                  }else{
+                      if(frontTop.next.getPriotiy() < priority){
+                          frontTop.next = new ListNode<>(item,priority,front);
+                      } //end if;
+                     } // end esle;
+                   } // end while; 
+                  } // end else;
+                 } // end of function; 
 
     @Override
     public void remove() throws QueueUnderflowException 
