@@ -41,7 +41,7 @@ public class QueueManager {
                 break;
                 
             case "ul":
-                q = new UnsortedLinkedListPriorityQueue<>();
+                q = new UnsortedLinkedListPriorityQueue<>(8);
                 System.out.println("Using a unsorted linked list.");
                 break;
                
