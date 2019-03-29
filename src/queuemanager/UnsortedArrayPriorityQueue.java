@@ -6,28 +6,16 @@ package queuemanager;
 public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
     
-    /**
-     * Where the data is actually stored.
-     */
+   
     private final Object[] storage;
 
-    /**
-     * The size of the storage array.
-     */
+    
     private final int capacity;
 
-    /**
-     * The index of the last item stored.
-     *
-     * This is equal to the item count minus one.
-     */
+    
     private int tailIndex;
 
-    /**
-     * Create a new empty queue of the given size.
-     *
-     * @param size
-     */
+   
     public UnsortedArrayPriorityQueue(int size) {
         storage = new Object[size];
         capacity = size;
@@ -36,12 +24,25 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
 
     @Override
     public T head() throws QueueUnderflowException {
+        
         if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-            return ((PriorityItem<T>) storage[0]).getItem();
-        }
-    }
+            int PriorityItem = 0;
+            int location = 0;
+             for ( int i = 0; i < storage.length; i++) {
+                 if((PriorityItem<T>)storage[i] != null)
+                 {
+                  if(((PriorityItem<T>) storage[i]).getPriority() > PriorityItem)
+                  {
+                       PriorityItem = ((PriorityItem<T>) storage[i]).getPriority();
+                       location = i;
+                  } //end if;
+                 } // end if;
+            } // end for loop;
+            return ((PriorityItem<T>) storage[location]).getItem();
+        } // end else;
+    } // end function;
     
      @Override
     public boolean isEmpty() {
@@ -53,27 +54,33 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
     
      @Override
     public void remove() throws QueueUnderflowException {
-        int PriorityItem;
-        
-        int i, max = 0;
+        int PriorityItem = 0;
+        int location =0;
          if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
             
-            for ( i = 0; i < tailIndex; i++) {
+            for ( int i = 0; i < storage.length; i++) {
              
                 PriorityItem = ((PriorityItem<T>) storage[i]).getPriority();
-                
-                
-            if(PriorityItem > max)
-              {
-                  max = PriorityItem;
-              }
+                 if((PriorityItem<T>)storage[i] != null)
+                 {
+                  if(((PriorityItem<T>) storage[i]) .getPriority() > PriorityItem)
+                  {
+                       PriorityItem = ((PriorityItem<T>) storage[i]).getPriority();
+                       location = i;
+                       
             
-                
+                  }
+                 }
             }
+                for( int h = location; h < storage.length; h ++){
+                    
+                storage[h] = storage[h + 1];
+            }
+          }
             tailIndex = tailIndex - 1;
-        }
+        
 
     }
        
@@ -87,6 +94,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             throw new QueueOverflowException();
         } else {
             {
+                tailIndex = tailIndex + 1;
                 int i = tailIndex;
                 storage[i] = new PriorityItem<>(item, priority);
             }
