@@ -7,13 +7,13 @@ import java.util.logging.Logger;
 public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
      
    private  ListNode<T> front;
-   private  ListNode<T> frontTop;
+   
    
     
     public SortedLinkedListPriorityQueue(int size)
     {
         front = null;
-        frontTop = null;
+        
         
     }
     
@@ -43,25 +43,34 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
            front = new ListNode<>(item,priority,front);
            
         }else{
+            ListNode<T> currentNode = front;
+         //  frontTop = front;
            
-           frontTop = front;
-           
-           while(frontTop != null){
-               if(frontTop.getPriotiy() > priority){
-                   frontTop = new ListNode<>(item,priority,front);
+           while(currentNode != null){
+               if(currentNode.priority < priority){
+                   front = new ListNode<>(item,priority,front.next);
                    break;
-                    } // end if;
-                  if(frontTop.next == null){
-                      frontTop.next = new ListNode<>(item,priority,front);
+                } // end if;
+                else if(currentNode.priority > priority)
+                {
+                    if(currentNode.next == null)
+                    {
+                      currentNode.next = new ListNode<>(item,priority,currentNode.next);
+                      break;
                       
-                  }else{
-                      if(frontTop.next.getPriotiy() < priority){
-                          frontTop.next = new ListNode<>(item,priority,front);
+                    } // end if;
+                    else
+                    {
+                      if(currentNode.next.getPriotiy() < priority){
+                          currentNode.next = new ListNode<>(item,priority,currentNode.next);
                       } //end if;
                      } // end esle;
-                   } // end while; 
-                  } // end else;
-                 } // end of function; 
+                } // end else if;
+                
+               currentNode = currentNode.getNext();
+            } // end while; 
+        } // end else;
+} // end of function; 
 
     @Override
     public void remove() throws QueueUnderflowException 
