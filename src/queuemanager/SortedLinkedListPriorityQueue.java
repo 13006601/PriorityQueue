@@ -6,10 +6,14 @@ import java.util.logging.Logger;
 
 public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
      
-    
+    /*
+     this is the node whare is all the data stored
+    */
    private  ListNode<T> front;
    
-   
+   /*
+    creating a new node wit the given size
+   */
     
     public SortedLinkedListPriorityQueue(int size)
     {
@@ -17,6 +21,10 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
         
         
     }
+    /*
+      this function is scan in order to find the null nods and retun data 
+      about that to user
+    */
     
     @Override
     public boolean isEmpty() 
@@ -24,6 +32,11 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
         return front == null;
     }
     
+    /*
+     this is the head what is serching list for the node on the top of the list
+     and return data about tha node to user, because this is hte sorted linked list
+     nod on the top of the list is nod wuth the highest priority number.
+    */
     @Override
     public T head() throws QueueUnderflowException 
     {
@@ -65,14 +78,26 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
             */
            while(currentNode != null){
                /*
-               an if statment what check if the 
+               an if statment what check if the nod priroity number is 
+               lower the priority number of the nod what abow him.
+               if the nod priority number is lower the nod will be stored 
+               after the nod with the higher priroity number.
                */
                if(currentNode.priority < priority){
                    front = new ListNode<>(item,priority,front.next);
                    break;
                 } // end if;
+               /*
+               this else if statment is check that the current node priority is
+               higher thet priority of hte loacl node  
+               */
                 else if(currentNode.priority > priority)
                 {
+                    /*
+                    if statment what checking if the current nod nex is 
+                    equal to null. if it true then function pace this nod 
+                    on that position in the list.
+                    */
                     if(currentNode.next == null)
                     {
                       currentNode.next = new ListNode<>(item,priority,currentNode.next);
@@ -81,6 +106,10 @@ public class SortedLinkedListPriorityQueue<T> implements PriorityQueue<T> {
                     } // end if;
                     else
                     {
+                       /*
+                         another if statment what checking currentNode.next priroity
+                         and similar it with hte priroity of the second nod .
+                        */
                       if(currentNode.next.getPriotiy() < priority){
                           currentNode.next = new ListNode<>(item,priority,currentNode.next);
                       } //end if;
